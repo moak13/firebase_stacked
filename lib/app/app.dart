@@ -2,9 +2,11 @@ import 'package:firebase_stacked/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:firebase_stacked/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:firebase_stacked/ui/views/home/home_view.dart';
 import 'package:firebase_stacked/ui/views/startup/startup_view.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_stacked/services/environment_service.dart';
+import 'package:firebase_stacked/services/firebase_core_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -18,6 +20,7 @@ import 'package:firebase_stacked/services/environment_service.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: EnvironmentService),
+    InitializableSingleton(classType: FirebaseCoreService),
 // @stacked-service
   ],
   bottomsheets: [

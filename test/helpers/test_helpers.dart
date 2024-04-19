@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:firebase_stacked/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_stacked/services/environment_service.dart';
+import 'package:firebase_stacked/services/firebase_core_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<EnvironmentService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<FirebaseCoreService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterEnvironmentService();
+  getAndRegisterFirebaseCoreService();
 // @stacked-mock-register
 }
 
@@ -76,6 +79,13 @@ MockEnvironmentService getAndRegisterEnvironmentService() {
   _removeRegistrationIfExists<EnvironmentService>();
   final service = MockEnvironmentService();
   locator.registerSingleton<EnvironmentService>(service);
+  return service;
+}
+
+MockFirebaseCoreService getAndRegisterFirebaseCoreService() {
+  _removeRegistrationIfExists<FirebaseCoreService>();
+  final service = MockFirebaseCoreService();
+  locator.registerSingleton<FirebaseCoreService>(service);
   return service;
 }
 // @stacked-mock-create

@@ -7,6 +7,7 @@ import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
 import 'package:firebase_stacked/services/environment_service.dart' as _i7;
+import 'package:firebase_stacked/services/firebase_core_service.dart' as _i8;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -677,3 +678,19 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockEnvironmentService extends _i1.Mock
     implements _i7.EnvironmentService {}
+
+/// A class which mocks [FirebaseCoreService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFirebaseCoreService extends _i1.Mock
+    implements _i8.FirebaseCoreService {
+  @override
+  _i5.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+}
