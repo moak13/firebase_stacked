@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_stacked/services/environment_service.dart';
 import 'package:firebase_stacked/services/firebase_core_service.dart';
 import 'package:firebase_stacked/services/firestore_service.dart';
+import 'package:firebase_stacked/services/user_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -22,6 +23,7 @@ import 'package:firebase_stacked/services/firestore_service.dart';
     LazySingleton(classType: EnvironmentService),
     InitializableSingleton(classType: FirebaseCoreService),
     LazySingleton(classType: FirestoreService),
+    LazySingleton(classType: UserService),
 // @stacked-service
   ],
   bottomsheets: [
