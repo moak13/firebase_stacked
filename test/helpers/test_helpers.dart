@@ -5,6 +5,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_stacked/services/environment_service.dart';
 import 'package:firebase_stacked/services/firebase_core_service.dart';
 import 'package:firebase_stacked/services/firestore_service.dart';
+import 'package:firebase_stacked/services/user_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -16,6 +17,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<EnvironmentService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FirebaseCoreService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FirestoreService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<UserService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -25,6 +27,7 @@ void registerServices() {
   getAndRegisterEnvironmentService();
   getAndRegisterFirebaseCoreService();
   getAndRegisterFirestoreService();
+  getAndRegisterUserService();
 // @stacked-mock-register
 }
 
@@ -96,6 +99,13 @@ MockFirestoreService getAndRegisterFirestoreService() {
   _removeRegistrationIfExists<FirestoreService>();
   final service = MockFirestoreService();
   locator.registerSingleton<FirestoreService>(service);
+  return service;
+}
+
+MockUserService getAndRegisterUserService() {
+  _removeRegistrationIfExists<UserService>();
+  final service = MockUserService();
+  locator.registerSingleton<UserService>(service);
   return service;
 }
 // @stacked-mock-create
