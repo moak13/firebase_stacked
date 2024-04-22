@@ -6,6 +6,7 @@
 
 // ignore_for_file: public_member_api_docs, implementation_imports, depend_on_referenced_packages
 
+import 'package:stacked_firebase_auth/src/firebase_authentication_service.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
@@ -35,6 +36,7 @@ Future<void> setupLocator({
   await firebaseCoreService.init();
   locator.registerSingleton(firebaseCoreService);
 
+  locator.registerLazySingleton(() => FirebaseAuthenticationService());
   locator.registerLazySingleton(() => FirestoreService());
   locator.registerLazySingleton(() => UserService());
 }
