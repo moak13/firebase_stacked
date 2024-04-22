@@ -5,23 +5,27 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:firebase_stacked/ui/views/home/home_view.dart' as _i4;
+import 'package:firebase_stacked/ui/views/home/home_view.dart' as _i5;
+import 'package:firebase_stacked/ui/views/signin/signin_view.dart' as _i4;
 import 'package:firebase_stacked/ui/views/signup/signup_view.dart' as _i3;
 import 'package:firebase_stacked/ui/views/startup/startup_view.dart' as _i2;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i5;
+import 'package:stacked_services/stacked_services.dart' as _i6;
 
 class Routes {
   static const startupView = '/';
 
   static const signupView = '/signup-view';
 
+  static const signinView = '/signin-view';
+
   static const homeView = '/home-view';
 
   static const all = <String>{
     startupView,
     signupView,
+    signinView,
     homeView,
   };
 }
@@ -37,8 +41,12 @@ class StackedRouter extends _i1.RouterBase {
       page: _i3.SignupView,
     ),
     _i1.RouteDef(
+      Routes.signinView,
+      page: _i4.SigninView,
+    ),
+    _i1.RouteDef(
       Routes.homeView,
-      page: _i4.HomeView,
+      page: _i5.HomeView,
     ),
   ];
 
@@ -55,9 +63,15 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i4.HomeView: (data) {
+    _i4.SigninView: (data) {
       return _i1.buildAdaptivePageRoute<dynamic>(
-        builder: (context) => const _i4.HomeView(),
+        builder: (context) => const _i4.SigninView(),
+        settings: data,
+      );
+    },
+    _i5.HomeView: (data) {
+      return _i1.buildAdaptivePageRoute<dynamic>(
+        builder: (context) => const _i5.HomeView(),
         settings: data,
       );
     },
@@ -70,7 +84,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i5.NavigationService {
+extension NavigatorStateExtension on _i6.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -93,6 +107,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.signupView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToSigninView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.signinView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -135,6 +163,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.signupView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSigninView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.signinView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
