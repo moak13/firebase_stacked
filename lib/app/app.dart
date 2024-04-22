@@ -3,18 +3,24 @@ import 'package:firebase_stacked/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:firebase_stacked/ui/views/home/home_view.dart';
 import 'package:firebase_stacked/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_stacked/services/environment_service.dart';
 import 'package:firebase_stacked/services/firebase_core_service.dart';
 import 'package:firebase_stacked/services/firestore_service.dart';
 import 'package:firebase_stacked/services/user_service.dart';
+import 'package:firebase_stacked/ui/views/signup/signup_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: HomeView),
-    MaterialRoute(page: StartupView),
-    // @stacked-route
+    AdaptiveRoute(
+      page: StartupView,
+      initial: true,
+    ),
+    AdaptiveRoute(page: SignupView),
+    AdaptiveRoute(page: HomeView),
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
@@ -22,6 +28,7 @@ import 'package:firebase_stacked/services/user_service.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: EnvironmentService),
     InitializableSingleton(classType: FirebaseCoreService),
+    LazySingleton(classType: FirebaseAuthenticationService),
     LazySingleton(classType: FirestoreService),
     LazySingleton(classType: UserService),
 // @stacked-service
