@@ -4,24 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
-import 'signup_view.form.dart';
-import 'signup_viewmodel.dart';
+import 'signin_view.form.dart';
+import 'signin_viewmodel.dart';
 
 @FormView(
   fields: [
-    FormTextField(name: 'first_name'),
-    FormTextField(name: 'last_name'),
     FormTextField(name: 'email'),
     FormTextField(name: 'password'),
   ],
 )
-class SignupView extends StackedView<SignupViewModel> with $SignupView {
-  const SignupView({Key? key}) : super(key: key);
+class SigninView extends StackedView<SigninViewModel> with $SigninView {
+  const SigninView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    SignupViewModel viewModel,
+    SigninViewModel viewModel,
     Widget? child,
   ) {
     return Scaffold(
@@ -37,36 +35,6 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
             verticalSpaceTiny,
             const Text('A place where things are as they are'),
             verticalSpaceLarge,
-            TextFormField(
-              controller: firstNameController,
-              focusNode: firstNameFocusNode,
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                hintText: 'kindly enter your first name',
-                labelText: 'First Name',
-              ),
-              onFieldSubmitted: (value) {
-                if (value.isNotEmpty) {
-                  lastNameFocusNode.requestFocus();
-                }
-              },
-            ),
-            verticalSpaceSmall,
-            TextFormField(
-              controller: lastNameController,
-              focusNode: lastNameFocusNode,
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
-                hintText: 'kindly enter your last name',
-                labelText: 'Last Name',
-              ),
-              onFieldSubmitted: (value) {
-                if (value.isNotEmpty) {
-                  emailFocusNode.requestFocus();
-                }
-              },
-            ),
-            verticalSpaceSmall,
             TextFormField(
               controller: emailController,
               focusNode: emailFocusNode,
@@ -102,10 +70,10 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                 ),
               ),
             ),
-            verticalSpaceMedium,
+            verticalSpaceMassive,
             RichText(
               text: TextSpan(
-                text: 'Already have an account?',
+                text: 'Don\'t have an account?',
                 style: const TextStyle(
                   color: Colors.black,
                 ),
@@ -114,13 +82,13 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                     text: ' ',
                   ),
                   TextSpan(
-                    text: 'Sign in.',
+                    text: 'Sign up.',
                     style: const TextStyle(
                       color: Colors.blue,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        viewModel.moveToSignIn();
+                        viewModel.moveToSignUp();
                       },
                   ),
                 ],
@@ -133,20 +101,20 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
   }
 
   @override
-  void onViewModelReady(SignupViewModel viewModel) {
+  void onViewModelReady(SigninViewModel viewModel) {
     syncFormWithViewModel(viewModel);
     super.onViewModelReady(viewModel);
   }
 
   @override
-  void onDispose(SignupViewModel viewModel) {
+  void onDispose(SigninViewModel viewModel) {
     disposeForm();
     super.onDispose(viewModel);
   }
 
   @override
-  SignupViewModel viewModelBuilder(
+  SigninViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      SignupViewModel();
+      SigninViewModel();
 }
